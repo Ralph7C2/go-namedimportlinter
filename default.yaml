@@ -1,0 +1,3 @@
+namedImports:
+- path: "github.com/ralph7c2/namedimportlinter/pkg/linter"
+  name: lint
