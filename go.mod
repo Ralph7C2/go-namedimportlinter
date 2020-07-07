@@ -1,4 +1,4 @@
-module github.com/ralph7c2/namedimportlinter
+module github.com/ralph7c2/go-namedimportlinter
 
 go 1.14
 
