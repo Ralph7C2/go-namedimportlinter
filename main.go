@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ralph7c2/namedimportlinter/pkg/config"
-	lint "github.com/ralph7c2/namedimportlinter/pkg/linter"
+	"github.com/ralph7c2/go-namedimportlinter/pkg/config"
+	lint "github.com/ralph7c2/go-namedimportlinter/pkg/linter"
 )
 
 func main() {

@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/ralph7c2/namedimportlinter/pkg/config"
+	"github.com/ralph7c2/go-namedimportlinter/pkg/config"
 )
 
 type linter struct {
