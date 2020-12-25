@@ -18,17 +18,20 @@ func main() {
 	if conf != nil {
 		c, _ = config.FromFile(*conf)
 	}
+
 	c, _ = config.AddCommandLine(c, imports)
 
 	l := lint.NewLinter(&c)
 
 	for _, arg := range flag.Args() {
 		l.Lint(arg)
+
 		out, err := l.Output()
 		if err != nil {
 			fmt.Println("Error:", err)
 			os.Exit(1)
 		}
+
 		if len(out) != 0 {
 			fmt.Println(arg)
 			fmt.Println(out)

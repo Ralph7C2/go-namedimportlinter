@@ -23,6 +23,7 @@ func NewLinter(cfg *config.Config) *linter {
 	for _, namedImport := range cfg.NamedImports {
 		m[namedImport.Path] = namedImport.Name
 	}
+
 	return &linter{
 		fset:         token.NewFileSet(),
 		out:          bytes.NewBuffer([]byte{}),
@@ -35,16 +36,20 @@ func (l *linter) Lint(fileName string) {
 	if err != nil {
 		panic(fmt.Sprintf("Parser error: %s", err))
 	}
+
 	for _, spec := range f.Imports {
 		path := strings.Trim(spec.Path.Value, "\"")
+
 		name, ok := l.namedImports[path]
 		if !ok {
 			continue
 		}
+
 		if spec.Name == nil {
 			l.NoName(path, name)
 			continue
 		}
+
 		if spec.Name.Name != name {
 			l.WrongName(path, name, spec.Name.Name)
 			continue
@@ -65,5 +70,6 @@ func (l linter) Output() (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return string(buf), nil
 }

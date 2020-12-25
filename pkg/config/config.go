@@ -22,11 +22,14 @@ func FromFile(filename string) (Config, error) {
 	if err != nil {
 		return Config{}, err
 	}
+
 	var c Config
+
 	err = yaml.Unmarshal(fBytes, &c)
 	if err != nil {
 		return Config{}, err
 	}
+
 	return c, nil
 }
 
@@ -34,13 +37,18 @@ func AddCommandLine(c Config, imports *string) (Config, error) {
 	if imports == nil {
 		return c, nil
 	}
+
 	list := strings.Split(*imports, ",")
+
 	for _, s := range list {
 		parts := strings.Split(s, ":")
+
 		if len(parts) != 2 {
 			return c, fmt.Errorf("invalid format")
 		}
+
 		c.NamedImports = append(c.NamedImports, Import{Path: parts[0], Name: parts[1]})
 	}
+
 	return c, nil
 }
